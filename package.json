@@ -4,6 +4,12 @@
   "description": "Backend for React Native messenger app.",
   "main": "index.js",
   "scripts": {
+    "start": "node .",
+    "dev": "npx nodemon .",
+    "initdev": "npm run migrate && npm run seed",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seed": "npx sequelize-cli db:seed:all",
+    "resetDB": "npx sequelize-cli db:migrate:undo:all && npm run initdev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marcin Robak",
@@ -14,5 +20,8 @@
     "pg": "^8.2.1",
     "sequelize": "^6.2.4",
     "sequelize-cli": "^6.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
