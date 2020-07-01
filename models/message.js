@@ -1,7 +1,5 @@
 "use strict";
 
-const user = require("./user");
-
 module.exports = (sequelize, DataTypes) => {
   const message = sequelize.define(
     "message",
@@ -20,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   message.associate = function (models) {
     message.belongsTo(models.user, {
+      // as: "sender",
       foreignKey: "senderId",
     });
 

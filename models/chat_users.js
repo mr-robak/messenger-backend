@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   chat_users.associate = function (models) {
     chat_users.belongsTo(models.chat);
-    chat_users.belongsTo(model.user);
+    chat_users.belongsTo(models.user);
     // associations can be defined here
   };
   return chat_users;

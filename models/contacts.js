@@ -9,8 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   contacts.associate = function (models) {
-    contacts.hasOne(models.user, { foreignKey: "contactId" });
-    contacts.belongsTo(model.user, { foreignKey: "userId" });
+    contacts.belongsTo(models.user, { as: "owner", foreignKey: "contactId" });
+    contacts.belongsTo(models.user, {
+      as: "user_contacts",
+      foreignKey: "userId",
+    });
     // associations can be defined here
   };
   return contacts;

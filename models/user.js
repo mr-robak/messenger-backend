@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       lastName: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       email: {
         type: DataTypes.STRING,
@@ -37,21 +36,24 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   user.associate = function (models) {
-    user.hasMany(models.message);
+    user.hasMany(models.message, { foreignKey: "senderId" });
 
-    user.hasMany(models.chat); //maybe FK should be here not chat
+    user.hasMany(models.chat, { as: "creator", foreignKey: "creatorId" }); //maybe FK should be here not chat
 
     user.belongsToMany(models.chat, {
+      as: "participants",
       through: "chat_users",
       foreignKey: "userId",
     });
 
-    user.hasMany(models.user, {
+    user.belongsToMany(models.user, {
+      as: "user_contacts",
       through: "contacts",
       foreignKey: "userId",
     });
 
     user.belongsToMany(models.user, {
+      as: "owner",
       through: "contacts",
       foreignKey: "contactId",
     });
