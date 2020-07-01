@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      is_loggedin: {
+      isLoggedin: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
@@ -37,6 +37,25 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   user.associate = function (models) {
+    user.hasMany(models.message);
+
+    user.hasMany(models.chat); //maybe FK should be here not chat
+
+    user.belongsToMany(models.chat, {
+      through: "chat_users",
+      foreignKey: "userId",
+    });
+
+    user.hasMany(models.user, {
+      through: "contacts",
+      foreignKey: "userId",
+    });
+
+    user.belongsToMany(models.user, {
+      through: "contacts",
+      foreignKey: "contactId",
+    });
+
     // associations can be defined here
   };
   return user;

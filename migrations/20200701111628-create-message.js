@@ -11,7 +11,7 @@ module.exports = {
       content: {
         type: Sequelize.TEXT,
       },
-      content_type: {
+      contentType: {
         type: Sequelize.ENUM("text", "picture", "video"),
       },
       sentAt: {

@@ -1,4 +1,7 @@
 "use strict";
+
+const user = require("./user");
+
 module.exports = (sequelize, DataTypes) => {
   const message = sequelize.define(
     "message",
@@ -7,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      content_type: {
+      contentType: {
         type: DataTypes.ENUM("text", "picture", "video"),
         allowNull: false,
       },
@@ -16,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   message.associate = function (models) {
+    message.belongsTo(models.user, {
+      foreignKey: "senderId",
+    });
+
+    message.belongsTo(models.chat);
     // associations can be defined here
   };
   return message;
