@@ -17,7 +17,7 @@
   "author": "Marcin Robak",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.15.1",
+    "apollo-server-express": "^2.15.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.2.0",
