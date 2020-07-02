@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       contentType: {
-        type: DataTypes.ENUM("text", "picture", "video"),
+        type: DataTypes.ENUM("text", "image", "video"),
         allowNull: false,
       },
       sentAt: DataTypes.DATE,
