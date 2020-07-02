@@ -4,7 +4,7 @@ module.exports = {
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: "messenger-app-db",
-    host: process.env.DB_HOST,
+    host: process.env.DB_HOST_URL,
     dialect: "postgres",
   },
   test: {
