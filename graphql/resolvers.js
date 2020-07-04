@@ -4,7 +4,7 @@
 module.exports = {
   Query: {
     user: async (_, { id }, { db }, ____) => {
-      //   console.log(111, "resolver user  id:", id);
+      console.log(11111, "resolver user  id:", id);
       const user = await db.user.findOne({
         where: { id },
         include: [
@@ -14,7 +14,8 @@ module.exports = {
           },
         ],
       });
-      //   console.log(222, user.dataValues);
+      console.log(22222, user.get({ plain: true }));
+      // return user.dataValues;
       return user;
     },
 

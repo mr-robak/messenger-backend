@@ -2,22 +2,23 @@ const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   type User {
-    id: ID!
+    id: Int!
     firstName: String!
     lastName: String
     email: String!
     password: String!
     isLoggedin: Boolean!
-    preferences: String!
+    preferences: String
     ### not sure about the below
     user_contacts: [User]
     chats: [Chat]
+    messages: [Message]
   }
 
   type Chat {
-    id: ID!
+    id: Int!
     title: String!
-    creatorId: ID!
+    creatorId: Int!
     creator: User
     participants: [User]
     messages: [Message]
@@ -30,44 +31,44 @@ const typeDefs = gql`
   }
 
   type Message {
-    id: ID!
-    senderId: ID!
-    chatId: ID!
+    id: Int!
+    senderId: Int!
+    chatId: Int!
     content: String!
     contentType: AllowedContentTypes!
   }
 
   type Contacts {
-    userId: ID!
+    userId: Int!
     contacts: [User]
   }
 
   type ChatUsers {
-    chatId: ID!
+    chatId: Int!
     users: [User]
   }
 
   type Query {
     user(id: Int!): User
     users: [User]
-    chat(id: ID!): Chat
-    chats(userId: ID!): [Chat]
-    contacts(userId: ID!): [User]
-    chat_users(chat: ID!): [User]
-    messages(chatId: ID!): [Message]
-    getCompleteChat(id: ID!): Chat
+    chat(id: Int!): Chat
+    chats(userId: Int!): [Chat]
+    contacts(userId: Int!): [User]
+    chat_users(chat: Int!): [User]
+    messages(chatId: Int!): [Message]
+    getCompleteChat(id: Int!): Chat
   }
 
   type Mutation {
     sendMessage(
-      senderId: ID!
-      chatId: ID!
+      senderId: Int!
+      chatId: Int!
       content: String!
       contentType: AllowedContentTypes!
     ): Message
     #createChat - adding users, messages
-    createChat(title: String!, creatorId: ID!, chatters: [ID!]): Chat!
-    # createGroupChat(title: String!, creatorID: ID!, contacts: [Users]!)
+    createChat(title: String!, creatorId: Int!, chatters: [Int!]): Chat!
+    # createGroupChat(title: String!, creatorID: Int!, contacts: [Users]!)
   }
 `;
 
